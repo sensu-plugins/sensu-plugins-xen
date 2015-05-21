@@ -1,12 +1,12 @@
 
-require 'sensu-plugins-wordpress/version'
+require 'sensu-plugins-xen/version'
 
 # Load the defaults
 
 #
 # Default class
 #
-module SensuPluginsWordpress
+module SensuPluginsXen
   class << self
   end
 
