@@ -30,10 +30,10 @@ require 'socket'
 
 class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
-    description: 'Metric naming scheme, text to prepend to metric',
-    short: '-s SCHEME',
-    long: '--scheme SCHEME',
-    default: '#{Socket.gethostbyname("#{Socket.gethostname}").first}.xen'
+         description: 'Metric naming scheme, text to prepend to metric',
+         short: '-s SCHEME',
+         long: '--scheme SCHEME',
+         default: '#{Socket.gethostbyname("#{Socket.gethostname}").first}.xen'
 
   def run
     xen = metrics_hash
@@ -98,7 +98,7 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
   def xm_hash
     xen_info = {}
     xm_info.each_line do |line|
-      if line =~ /nr_cpus/ || line =~ /cores_per_socket/ || line =~ /threads_per_core/ || line =~ /total_memory/ || line =~ /free_memory/ || line =~ /free_cpus/ || line =~  /nr_nodes/
+      if line =~ /nr_cpus/ || line =~ /cores_per_socket/ || line =~ /threads_per_core/ || line =~ /total_memory/ || line =~ /free_memory/ || line =~ /free_cpus/ || line =~ /nr_nodes/
         xen_info.store((line.split(' ')[0]), line.split.drop(2).join(' ').to_i)
       end
     end
@@ -113,4 +113,4 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
     output = `sudo xm info`
   end
 
- end
+end
