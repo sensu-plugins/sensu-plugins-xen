@@ -98,7 +98,7 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
   def xm_hash
     xen_info = {}
     `sudo xm info`.each_line do |line|
-      if line =~ /nr_cpus/ || line =~ /cores_per_socket/ || line =~ /threads_per_core/ || line =~ /total_memory/ || line =~ /free_memory/ || line =~ /free_cpus/ || line =~ /nr_nodes/
+      if /(/nr_cpus/|/cores_per_socket/|/threads_per_core/|/total_memory/|/free_memory/|/free_cpus/|/nr_nodes/)/.match(line)
         xen_info.store((line.split(' ')[0]), line.split.drop(2).join(' ').to_i)
       end
     end
