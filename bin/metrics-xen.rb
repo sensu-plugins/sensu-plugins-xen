@@ -43,7 +43,7 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
     xen.each do |_k, v|
       result = v.split(' ')
       metrics = {
-      "#{xencount[i]}": {
+      :"#{xencount[i]}" => {
         CPUs: result[0],
         CPUp: result[1],
         MEMk: result[2],
@@ -87,7 +87,7 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
   def metrics_hash
     xen = {}
     xencount = xenservers
-    c = xencount.count -1
+    c = xencount.count - 1
     xentop_output.each_line.with_index do |line, lineno|
       next if lineno <= c
       xen[line.split.first(1).join(' ')] = line.split.drop(2).join(' ')
