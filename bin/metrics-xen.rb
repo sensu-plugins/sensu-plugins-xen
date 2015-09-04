@@ -43,35 +43,35 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
     xen.each do |_k, v|
       result = v.split(' ')
       metrics = {
-      :"#{xencount[i]}" => {
-        CPUs: result[0],
-        CPUp: result[1],
-        MEMk: result[2],
-        MEMp: result[3],
-        MAXMEMk: result[4].to_i,
-        MAXMEMp: result[5].to_f,
-        VCPUs: result[6].to_i,
-        NETS: result[7],
-        NETTX: result[8],
-        NETRX: result[9],
-        VBDS: result[10],
-        VBD_OO: result[11],
-        VBD_RD: result[12],
-        VBD_WR: result[13],
-        VBD_RSECT: result[14],
-        VBD_WSECT: result[15],
-        SSID: result[16]
+        :"#{xencount[i]}" => {
+          CPUs: result[0],
+          CPUp: result[1],
+          MEMk: result[2],
+          MEMp: result[3],
+          MAXMEMk: result[4].to_i,
+          MAXMEMp: result[5].to_f,
+          VCPUs: result[6].to_i,
+          NETS: result[7],
+          NETTX: result[8],
+          NETRX: result[9],
+          VBDS: result[10],
+          VBD_OO: result[11],
+          VBD_RD: result[12],
+          VBD_WR: result[13],
+          VBD_RSECT: result[14],
+          VBD_WSECT: result[15],
+          SSID: result[16]
         }
       }
       i += 1
-        metrics.each do |parent, children|
-          children.each do |child, value|
-            output [config[:scheme], parent, child].join("."), value
-          end
+      metrics.each do |parent, children|
+        children.each do |child, value|
+          output [config[:scheme], parent, child].join('.'), value
         end
+      end
     end
     xm.each do |k, v|
-      output [config[:scheme], 'Domain-0', k].join("."), v
+      output [config[:scheme], 'Domain-0', k].join('.'), v
     end
     ok
   end
