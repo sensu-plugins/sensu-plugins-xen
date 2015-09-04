@@ -97,7 +97,7 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
 
   def xm_hash
     xen_info = {}
-    xm_info.each_line do |line|
+    `sudo xm info`.each_line do |line|
       if line =~ /nr_cpus/ || line =~ /cores_per_socket/ || line =~ /threads_per_core/ || line =~ /total_memory/ || line =~ /free_memory/ || line =~ /free_cpus/ || line =~ /nr_nodes/
         xen_info.store((line.split(' ')[0]), line.split.drop(2).join(' ').to_i)
       end
@@ -106,11 +106,6 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
   end
 
   def xentop_output
-    output = `sudo xentop -bfi2 | grep -v NAME`
+    `sudo xentop -bfi2 | grep -v NAME`
   end
-
-  def xm_info
-    output = `sudo xm info`
-  end
-
 end
