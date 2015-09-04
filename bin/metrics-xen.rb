@@ -29,39 +29,38 @@ require 'sensu-plugin/metric/cli'
 require 'socket'
 
 class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
-
   option :scheme,
-   :description => "Metric naming scheme, text to prepend to metric",
-   :short => "-s SCHEME",
-   :long => "--scheme SCHEME",
-   :default => "#{Socket.gethostbyname("#{Socket.gethostname}").first}.xen"
+    description: 'Metric naming scheme, text to prepend to metric',
+    short: '-s SCHEME',
+    long: '--scheme SCHEME',
+    default: '#{Socket.gethostbyname("#{Socket.gethostname}").first}.xen'
 
   def run
     xen = metrics_hash
     xm = xm_hash
     xencount = xenservers
     i = 0
-    xen.each do |k, v|
-      result = v.split(" ")
+    xen.each do |_k, v|
+      result = v.split(' ')
       metrics = {
-      :"#{xencount[i]}" => {
-        :CPUs => result[0],
-        :CPUp => result[1],
-        :MEMk => result[2],
-        :MEMp => result[3],
-        :MAXMEMk => result[4].to_i,
-        :MAXMEMp => result[5].to_f,
-        :VCPUs => result[6].to_i,
-        :NETS => result[7],
-        :NETTX => result[8],
-        :NETRX => result[9],
-        :VBDS => result[10],
-        :VBD_OO => result[11],
-        :VBD_RD => result[12],
-        :VBD_WR => result[13],
-        :VBD_RSECT => result[14],
-        :VBD_WSECT => result[15],
-        :SSID => result[16]
+      "#{xencount[i]}": {
+        CPUs: result[0],
+        CPUp: result[1],
+        MEMk: result[2],
+        MEMp: result[3],
+        MAXMEMk: result[4].to_i,
+        MAXMEMp: result[5].to_f,
+        VCPUs: result[6].to_i,
+        NETS: result[7],
+        NETTX: result[8],
+        NETRX: result[9],
+        VBDS: result[10],
+        VBD_OO: result[11],
+        VBD_RD: result[12],
+        VBD_WR: result[13],
+        VBD_RSECT: result[14],
+        VBD_WSECT: result[15],
+        SSID: result[16]
         }
       }
       i += 1
@@ -72,13 +71,13 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
         end
     end
     xm.each do |k, v|
-      output [config[:scheme], "Domain-0", k].join("."), v
+      output [config[:scheme], 'Domain-0', k].join("."), v
     end
     ok
   end
 
   def xenservers
-    xencount = Array.new
+    xencount = []
     xentop_output.each_line do |line|
       xencount.push(line.split.first(1).join(' ').split('.').first)
     end
@@ -86,33 +85,32 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
   end
 
   def metrics_hash
-     xen = {}
-     xencount = xenservers
-     c = xencount.count-1
-     xentop_output.each_line.with_index do |line,lineno|
-        next if lineno <= c
-        xen[line.split.first(1).join(' ')] = line.split.drop(2).join(' ')
-     end
-     xen
+    xen = {}
+    xencount = xenservers
+    c = xencount.count -1
+    xentop_output.each_line.with_index do |line, lineno|
+      next if lineno <= c
+      xen[line.split.first(1).join(' ')] = line.split.drop(2).join(' ')
+    end
+    xen
   end
 
   def xm_hash
     xen_info = {}
     xm_info.each_line do |line|
-      if line =~ /nr_cpus/ or line =~ /cores_per_socket/ or line =~ /threads_per_core/ or line =~ /total_memory/ or line =~ /free_memory/ or line =~ /free_cpus/ or line =~  /nr_nodes/
-        xen_info.store((line.split(" ")[0]), line.split.drop(2).join(' ').to_i)
+      if line =~ /nr_cpus/ || line =~ /cores_per_socket/ || line =~ /threads_per_core/ || line =~ /total_memory/ || line =~ /free_memory/ || line =~ /free_cpus/ || line =~  /nr_nodes/
+        xen_info.store((line.split(' ')[0]), line.split.drop(2).join(' ').to_i)
       end
     end
     xen_info
   end
 
   def xentop_output
-    output=`sudo xentop -bfi2 | grep -v NAME`
+    output = `sudo xentop -bfi2 | grep -v NAME`
   end
 
   def xm_info
-    output=`sudo xm info`
+    output = `sudo xm info`
   end
 
  end
-
