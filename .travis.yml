@@ -24,7 +24,7 @@ deploy:
     secure: glNFAx+QBd9mrMeddEhxH2gyvfVHHlieg594v7H56a6y/CRgAfZqq/a3jkmdyS0HqHjFinRAJYgs9bUjtAeDKScOm0lu7ox4b5cPldXudb3h7WYaZk9/bO/I4MwlBE9oj8LSNwYAj2Vjo2JFZMmjUsubbQaSiXnw8fQ4G/JuUnM=
   gem: sensu-plugins-xen
   on:
-    ags: true
+    tags: true
     all_branches: true
     rvm: 1.9.3
     rvm: 2.0
