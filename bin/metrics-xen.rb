@@ -33,7 +33,7 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
          short: '-c xm',
          long: '--cmd xm',
          description: 'xm|xl',
-         default: 'xl' 
+         default: 'xl'
 
   option :scheme,
          description: 'Metric naming scheme, text to prepend to metric',
