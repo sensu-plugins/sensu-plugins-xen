@@ -29,6 +29,12 @@ require 'sensu-plugin/metric/cli'
 require 'socket'
 
 class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
+  option :info_command,
+         short: '-c xm',
+         long: '--cmd xm',
+         description: 'xm|xl',
+         default: 'xm'
+
   option :scheme,
          description: 'Metric naming scheme, text to prepend to metric',
          short: '-s SCHEME',
@@ -97,7 +103,7 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
 
   def xm_hash
     xen_info = {}
-    `sudo xm info`.each_line do |line|
+    `sudo #{config[:info_command]} info`.each_line do |line|
       if /(nr_cpus|cores_per_socket|threads_per_core|total_memory|free_memory|free_cpus|nr_nodes)/ =~ line
         xen_info.store((line.split(' ')[0]), line.split.drop(2).join(' ').to_i)
       end

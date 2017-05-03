@@ -12,9 +12,10 @@
  * bin/handler-xen
 
 ## Usage
-
+sudo -u sensu ./metrics-xen.rb -c xm|xl
 ## Installation
 
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
 
 ## Notes
+ Make sure you grant sudo access to execute xm or xl to sensu user.
