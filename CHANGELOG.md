@@ -5,8 +5,12 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+## [1.0.0] - 2017-05-03
 ## Breaking Change
 - removed ruby 1.9 testing as its really not supported anymore (@majormoses)
+
+## Added
+- metrics-xen.rb: added support for xl (@mag009)
 
 ## [0.1.0] - 2016-08-16
 ## Changed
@@ -15,8 +19,6 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## Added
 - metrics-xen.rb: new metric plugin added!
 
-## [0.0.4] - 2016-05-23
-- added support for xl
 
 ## [0.0.3] - 2015-07-14
 ### Changed
@@ -33,7 +35,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-xen/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-xen/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/sensu-plugins/sensu-plugins-xen/compare/0.1.0...1.0.0
 [0.1.0]: https://github.com/sensu-plugins/sensu-plugins-xen/compare/0.0.3...0.1.0
 [0.0.3]: https://github.com/sensu-plugins/sensu-plugins-xen/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/sensu-plugins/sensu-plugins-xen/compare/0.0.1...0.0.2
