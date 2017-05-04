@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+## Breaking Change
+- removed ruby 1.9 testing as its really not supported anymore (@majormoses)
+
 ## [0.1.0] - 2016-08-16
 ## Changed
 - Updated sensu-plugin dependency from `= 1.2.0` to `~> 1.2.0`
