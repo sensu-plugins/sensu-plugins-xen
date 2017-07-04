@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- Ruby 2.3.0 & 2.4.1 testing
+
+### Fixed
+- PR template spelling
+
+### Breaking Change
+- Remove Ruby 1.9 completely
 
 ## [1.0.0] - 2017-05-03
 ## Breaking Change
