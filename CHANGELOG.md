@@ -1,9 +1,21 @@
-#Change Log
+# Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
+This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+
+### Security
+- updated rubocop dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418 (@majormoses)
+
+### Breaking Changes
+- removed ruby `< 2.1` support (@majormoses)
+
+### Fixed
+- metrics-zen.rb: fixed a bug due to using single quotes where string interpolation is necessary (@majormoses)
+
+### Changed
+- updated changelog guidelines location (@majormoses)
 
 ## [2.0.0] 2017-07-04
 ### Added

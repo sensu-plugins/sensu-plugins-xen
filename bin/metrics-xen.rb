@@ -39,14 +39,15 @@ class XenGraphite < Sensu::Plugin::Metric::CLI::Graphite
          description: 'Metric naming scheme, text to prepend to metric',
          short: '-s SCHEME',
          long: '--scheme SCHEME',
-         default: '#{Socket.gethostbyname("#{Socket.gethostname}").first}.xen'
+         default: "#{Socket.gethostbyname(Socket.gethostname).first}.xen"
 
   def run
     xen = metrics_hash
     xm = xm_hash
     xencount = xenservers
     i = 0
-    xen.each do |_k, v|
+    # TODO: come back and refactor me
+    xen.each_value do |v| # rubocop:disable Metrics/BlockLength
       result = v.split(' ')
       metrics = {
         :"#{xencount[i]}" => {
