@@ -1,6 +1,6 @@
 module SensuPluginsXen
   module Version
-    MAJOR = 2
+    MAJOR = 3
     MINOR = 0
     PATCH = 0
 
